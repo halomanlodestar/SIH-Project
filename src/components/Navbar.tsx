@@ -1,4 +1,7 @@
 import NavMenu from "@/components/NavMenu";
+import Image from "next/image";
+import React from "react";
+import Link from "next/link";
 
 export const NavLinks = [
   {
@@ -23,17 +26,29 @@ const Navbar = () => {
   return (
     <header
       className={
-        "w-full h-20 text-lg border flex items-center justify-between container-x"
+        "w-full h-20 text-md border-b flex items-center justify-between container-x"
       }
     >
-      <nav>Home</nav>
+      <nav>
+        <Image
+          width={32}
+          height={32}
+          src={"/favicon.png"}
+          alt={"SIH"}
+          className={"rounded-full"}
+        />
+      </nav>
       <nav>
         <ul className={"hidden md:flex space-x-4"}>
           {NavLinks.map((item) => (
-            <li key={item.name}>{item.name}</li>
+            <Link href={item.path} key={item.name} className={"cursor-pointer"}>
+              {item.name}
+            </Link>
           ))}
         </ul>
-        <NavMenu />
+        <div className={"md:hidden"}>
+          <NavMenu />
+        </div>
       </nav>
     </header>
   );
